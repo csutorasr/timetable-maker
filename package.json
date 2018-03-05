@@ -8,7 +8,11 @@
     "build": "ng build --prod",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "start:electron": "electron dist/electron.js",
+    "build:electron": "yarn build:electron:dev",
+    "build:electron:dev": "webpack --config webpack.electron.config.js",
+    "build:electron:prod": "webpack --config webpack.electron.prod.config.js"
   },
   "private": true,
   "dependencies": {
@@ -22,7 +26,9 @@
     "@angular/platform-browser-dynamic": "^5.2.0",
     "@angular/router": "^5.2.0",
     "core-js": "^2.4.1",
+    "electron": "^1.8.2",
     "rxjs": "^5.5.6",
+    "webpack": "^4.1.0",
     "zone.js": "^0.8.19"
   },
   "devDependencies": {
@@ -41,8 +47,10 @@
     "karma-jasmine": "~1.1.0",
     "karma-jasmine-html-reporter": "^0.2.2",
     "protractor": "~5.1.2",
+    "ts-loader": "^4.0.1",
     "ts-node": "~4.1.0",
     "tslint": "~5.9.1",
-    "typescript": "~2.5.3"
+    "typescript": "~2.5.3",
+    "webpack-cli": "^2.0.10"
   }
 }
