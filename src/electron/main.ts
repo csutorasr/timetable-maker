@@ -1,6 +1,8 @@
 import { app, BrowserWindow, protocol } from 'electron';
 import * as path from 'path';
 import { environment } from './environment.dev';
+import { OrmConnector } from './orm-conector';
+import { Teacher } from '../models/classes/teacher';
 
 let win;
 
@@ -24,6 +26,10 @@ function createWindow() {
     backgroundColor: '#ffffff',
     icon: `file://${__dirname}/dist/assets/logo.png`
   });
+  const t = new Teacher();
+  for (const key of Object.keys(t)) {
+    console.log(key);
+  }
 
 
   win.loadURL(environment.startUrl);
@@ -55,3 +61,5 @@ app.on('activate', function () {
     createWindow();
   }
 });
+
+const orm = new OrmConnector();
