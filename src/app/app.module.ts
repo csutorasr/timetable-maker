@@ -6,6 +6,8 @@ import { NgxElectronModule } from 'ngx-electron';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
+import { PersistModule } from '../modules/persistconnector/angular/persist.module';
+import { TypeMap } from '../models/type-map';
 
 
 @NgModule({
@@ -16,6 +18,7 @@ import { AppComponent } from './app.component';
     BrowserModule,
     NgxElectronModule,
     ReactiveFormsModule,
+    PersistModule.forRoot(TypeMap),
     AppRoutingModule
   ],
   providers: [],

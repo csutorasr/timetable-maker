@@ -4,8 +4,8 @@ export enum RequestType {
   findAll = 'findAll',
   delete = 'delete',
 }
-export type EntityTypeMap<T extends string, V = Function> = {
-  [P in T]: V;
+export type EntityTypeMap<T extends string> = {
+  [P in T]: any;
 };
 
 export interface ISaveRequest<T, V> {
