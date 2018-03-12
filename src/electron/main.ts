@@ -1,8 +1,10 @@
 import { app, BrowserWindow, protocol } from 'electron';
 import * as path from 'path';
 import { environment } from './environment.dev';
-import { OrmConnector } from './orm-conector';
 import { Teacher } from '../models/classes/teacher';
+import { PersistConnector } from '../modules/persistconnector/persist-conector';
+import { InMemoryConnector } from '../modules/persistconnector/connectors/in-memory';
+import { TypeMap } from '../models/type-map';
 
 let win;
 
@@ -62,4 +64,4 @@ app.on('activate', function () {
   }
 });
 
-const orm = new OrmConnector();
+const orm = new PersistConnector(new InMemoryConnector(TypeMap));

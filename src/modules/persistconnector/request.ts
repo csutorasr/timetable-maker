@@ -8,17 +8,17 @@ export type EntityTypeMap<T extends string, V = Function> = {
   [P in T]: V;
 };
 
-export interface IOrmSaveRequest<T, V> {
+export interface ISaveRequest<T, V> {
   type: RequestType.save;
   entityType: T;
   entity: V;
 }
 
-export interface IOrmFindAllRequest<T> {
+export interface IFindAllRequest<T> {
   type: RequestType.findAll;
   entityType: T;
 }
 
-export type IOrmRequest<T, V> =
-  IOrmSaveRequest<T, V> |
-  IOrmFindAllRequest<T>;
+export type IRequest<T, V> =
+  ISaveRequest<T, V> |
+  IFindAllRequest<T>;

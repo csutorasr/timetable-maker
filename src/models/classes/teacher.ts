@@ -1,6 +1,4 @@
-import { ITeacher } from '../interfaces/teacher';
-
-export class Teacher implements ITeacher {
+export class Teacher {
   id: number;
   firstName: string;
   lastName: string;

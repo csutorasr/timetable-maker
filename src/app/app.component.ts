@@ -1,12 +1,12 @@
 import { Component, NgZone } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
 
-import { ITeacher } from '../models/interfaces/teacher';
-import { IOrmRequest, RequestType } from '../models/interfaces/orm-request';
 import { EntityTypeNames } from '../models/entities';
-import { IEntity } from '../models/interfaces/entity';
 import { FormControl } from '@angular/forms';
-import { IOrmResponse } from '../models/interfaces/orm-response';
+import { Teacher } from '../models/classes/teacher';
+import { IResponse } from '../modules/persistconnector/response';
+import { IEntity } from '../modules/persistconnector/entity';
+import { IRequest, RequestType } from '../modules/persistconnector/request';
 
 @Component({
   selector: 'ttb-root',
@@ -14,22 +14,22 @@ import { IOrmResponse } from '../models/interfaces/orm-response';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  teachers: ITeacher[] = [];
+  teachers: Teacher[] = [];
 
   lastNameControl: FormControl;
   firstNameControl: FormControl;
   constructor(private electronService: ElectronService, private zone: NgZone) {
-    this.electronService.ipcRenderer.on('orm', (sender, res: IOrmResponse<EntityTypeNames, IEntity>) => {
+    this.electronService.ipcRenderer.on('persist', (sender, res: IResponse<EntityTypeNames, IEntity>) => {
       zone.run(() => {
         switch (res.type) {
           case RequestType.save:
             if (res.entityType === EntityTypeNames.Teacher) {
-              this.teachers.push(<ITeacher>res.entity);
+              this.teachers.push(<Teacher>res.entity);
             }
             break;
           case RequestType.findAll:
             if (res.entityType === EntityTypeNames.Teacher) {
-              this.teachers = <ITeacher[]>res.entities;
+              this.teachers = <Teacher[]>res.entities;
             }
             break;
         }
@@ -47,10 +47,9 @@ export class AppComponent {
   }
 
   save() {
-    const data: ITeacher = {
-      firstName: this.firstNameControl.value,
-      lastName: this.lastNameControl.value,
-    };
+    const data: Teacher = new Teacher();
+    data.firstName = this.firstNameControl.value;
+    data.lastName = this.lastNameControl.value;
     this.sendData({
       type: RequestType.save,
       entityType: EntityTypeNames.Teacher,
@@ -58,7 +57,7 @@ export class AppComponent {
     });
   }
 
-  sendData(data: IOrmRequest<EntityTypeNames, IEntity>) {
-    this.electronService.ipcRenderer.send('orm', data);
+  sendData(data: IRequest<EntityTypeNames, IEntity>) {
+    this.electronService.ipcRenderer.send('persist', data);
   }
 }
