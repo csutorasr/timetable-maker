@@ -2,7 +2,7 @@ const path = require('path');
 const webpack = require('webpack');
 
 module.exports = {
-  entry: { server: './electron/main.ts' },
+  entry: { server: './src/electron/main.ts' },
   resolve: { extensions: ['.js', '.ts'] },
   target: 'electron-main',
   // this makes sure we include node_modules and other 3rd party libraries
