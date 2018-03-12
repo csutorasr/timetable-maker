@@ -4,7 +4,6 @@ import { NgModule } from '@angular/core';
 import { AppRoutingModule } from './app-routing.module';
 
 import { AppComponent } from './app.component';
-import { TypeormService } from './typeorm.service';
 
 
 @NgModule({
@@ -15,9 +14,7 @@ import { TypeormService } from './typeorm.service';
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [
-    TypeormService,
-  ],
+  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
