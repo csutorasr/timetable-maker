@@ -1,0 +1,6 @@
+<div mwlResizable [resizeEdges]="{right: true}" [enableGhostResize]="true" (resizeEnd)="onResizeEnd($event)" [style.width]="leftWidth + 'px'">
+  <ttb-school-tree-view></ttb-school-tree-view>
+</div>
+<div class="center">
+  <router-outlet></router-outlet>
+</div>

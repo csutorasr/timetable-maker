@@ -1,0 +1,6 @@
+<span [class.selected]="data.meta === selectedMeta">{{data?.label}}</span>
+<ul *ngIf="data?.children?.length !== 0">
+  <li *ngFor="let child of data?.children">
+    <ttb-tree-view [data]="child" [selectedMeta]="selectedMeta" (trigger)="clicked($event)"></ttb-tree-view>
+  </li>
+</ul>

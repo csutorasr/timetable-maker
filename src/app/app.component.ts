@@ -16,24 +16,4 @@ import { TypeMap } from '../models/type-map';
   styleUrls: ['./app.component.scss']
 })
 export class AppComponent {
-  teachers: Teacher[] = [];
-
-  lastNameControl: FormControl;
-  firstNameControl: FormControl;
-  constructor(private persist: PersistService<EntityTypeNames>) {
-    this.firstNameControl = new FormControl('');
-    this.lastNameControl = new FormControl('');
-  }
-
-  loadAll() {
-    this.teachers = this.persist.findAll(EntityTypeNames.Teacher);
-  }
-
-  save() {
-    const data: Teacher = new Teacher();
-    data.firstName = this.firstNameControl.value;
-    data.lastName = this.lastNameControl.value;
-    this.persist.save(data, EntityTypeNames.Teacher);
-  }
-
 }
