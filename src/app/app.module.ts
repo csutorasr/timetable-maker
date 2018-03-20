@@ -12,6 +12,9 @@ import { TypeMap } from '../models/type-map';
 import { MainComponent } from './layout/main/main.component';
 import { SchoolTreeViewComponent } from './layout/school-tree-view/school-tree-view.component';
 import { SharedModule } from './shared/shared.module';
+import { CoreModule } from './core/core.module';
+import { StoreModule } from '@ngrx/store';
+import { EffectsModule } from '@ngrx/effects';
 
 
 @NgModule({
@@ -25,9 +28,12 @@ import { SharedModule } from './shared/shared.module';
     NgxElectronModule,
     ReactiveFormsModule,
     PersistModule.forRoot(TypeMap),
+    StoreModule.forRoot({}),
+    EffectsModule.forRoot([]),
     AppRoutingModule,
     SharedModule,
     ResizableModule,
+    CoreModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
