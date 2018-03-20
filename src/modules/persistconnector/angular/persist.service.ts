@@ -1,5 +1,6 @@
 import { Injectable, NgZone, Inject } from '@angular/core';
 import { ElectronService } from 'ngx-electron';
+import { Subject } from 'rxjs/Subject';
 
 import { RequestType, EntityTypeMap, IRequest } from '../request';
 import { IResponse } from '../response';
@@ -11,6 +12,7 @@ export class PersistService<T extends string> {
   data: {
     [P in T]: any[]
   };
+  notify = new Subject<string>();
   constructor(private electronService: ElectronService, private zone: NgZone, @Inject(PERSIST_MAP) private map: EntityTypeMap<T>) {
     this.data = <any>{};
     for (const key in map) {
@@ -28,6 +30,7 @@ export class PersistService<T extends string> {
             this.data[res.entityType] = <any[]>res.entities;
             break;
         }
+        this.notify.next(res.entityType);
       });
     });
   }
