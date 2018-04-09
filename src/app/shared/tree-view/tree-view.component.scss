@@ -1,3 +1,11 @@
+:host {
+  user-select: none;
+}
+
+span {
+  cursor: pointer;
+}
+
 span.selected {
   font-weight: bold;
 }
