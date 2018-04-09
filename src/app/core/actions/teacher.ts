@@ -8,16 +8,16 @@ export enum TeacherActionTypes {
 }
 
 export class LoadAll implements Action {
-  public readonly type: TeacherActionTypes.LoadAll;
+  public readonly type = TeacherActionTypes.LoadAll;
 }
 
 export class LoadSuccess implements Action {
-  public readonly type: TeacherActionTypes.LoadSuccess;
+  public readonly type = TeacherActionTypes.LoadSuccess;
   constructor(public payload: Teacher[]) { }
 }
 
 export class Save implements Action {
-  public readonly type: TeacherActionTypes.Save;
+  public readonly type = TeacherActionTypes.Save;
   constructor(public payload: Teacher) { }
 }
 
