@@ -4,5 +4,5 @@ export class Class {
   subjects: {
     subjectId: number;
     numberInWeek: number;
-  };
+  }[];
 }
