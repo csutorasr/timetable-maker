@@ -1,10 +1,12 @@
-import { app, BrowserWindow, protocol } from 'electron';
+import { app, BrowserWindow, protocol, Menu } from 'electron';
 import * as path from 'path';
+
 import { environment } from './environment.dev';
 import { Teacher } from '../models/classes/teacher';
 import { PersistConnector } from '../modules/persistconnector/persist-conector';
 import { InMemoryConnector } from '../modules/persistconnector/connectors/in-memory';
 import { TypeMap } from '../models/type-map';
+import { menu } from './menu';
 
 let win;
 
@@ -43,6 +45,7 @@ function createWindow() {
   win.on('closed', function () {
     win = null;
   });
+  Menu.setApplicationMenu(menu);
 }
 
 // Create window on electron intialization
