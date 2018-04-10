@@ -19,6 +19,8 @@ import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers';
 import { ClassViewComponent } from './layout/class-view/class-view.component';
 import { ClassSelectableComponent } from './layout/class-selectable/class-selectable.component';
+import { TimeTableComponent } from './layout/time-table/time-table.component';
+import { TimeTableDayComponent } from './layout/time-table-day/time-table-day.component';
 
 
 @NgModule({
@@ -28,6 +30,8 @@ import { ClassSelectableComponent } from './layout/class-selectable/class-select
     SchoolTreeViewComponent,
     ClassViewComponent,
     ClassSelectableComponent,
+    TimeTableComponent,
+    TimeTableDayComponent,
   ],
   imports: [
     BrowserModule,
