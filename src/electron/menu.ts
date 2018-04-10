@@ -7,8 +7,9 @@ const template: any = [
     label: 'File',
     submenu: [
       { label: 'Create Teacher', click: clickFunction },
-      { label: 'Create Class', click: clickFunction },
+      { label: 'Create Classroom', click: clickFunction },
       { label: 'Create Subject', click: clickFunction },
+      { label: 'Create Class', click: clickFunction },
       { role: 'quit' }
     ]
   },
