@@ -25,5 +25,7 @@ export function reducer(state = initialState, action: fromActions.TeacherActions
         entities: action.payload,
       };
     }
+    default:
+      return state;
   }
 }

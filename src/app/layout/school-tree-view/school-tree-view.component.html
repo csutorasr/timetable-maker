@@ -1,1 +1,1 @@
-<ttb-tree-view [data]="data" [selectedMeta]="selectedMeta" (trigger)="triggered($event)"></ttb-tree-view>
+<ttb-tree-view [data]="data$ | async" [selectedMeta]="selectedMeta" (trigger)="triggered($event)"></ttb-tree-view>
