@@ -23,12 +23,14 @@ export class PersistService<T extends string> {
     this.electronService.ipcRenderer.on('persist', (sender, res: IResponse<T, IEntity>) => {
       zone.run(() => {
         switch (res.type) {
-          case RequestType.save:
-            this.data[res.entityType].push(<any>res.entity);
+          case RequestType.save: {
+            this.data[res.entityType].push(this.copyEntityData(res.entityType, res.entity));
             break;
-          case RequestType.findAll:
-            this.data[res.entityType] = <any[]>res.entities;
+          }
+          case RequestType.findAll: {
+            this.data[res.entityType] = (<any[]>res.entities).map(e => this.copyEntityData(res.entityType, e));
             break;
+          }
         }
         this.notify.next(res.entityType);
       });
@@ -53,5 +55,13 @@ export class PersistService<T extends string> {
 
   private sendData(data: IRequest<T, IEntity>) {
     this.electronService.ipcRenderer.send('persist', data);
+  }
+
+  private copyEntityData(type: T, data) {
+    const entity = new (this.map[type])();
+    Object.keys(data).forEach(key => {
+      entity[key] = data[key];
+    });
+    return entity;
   }
 }
