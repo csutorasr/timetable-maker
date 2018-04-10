@@ -1,6 +1,7 @@
 import { Component, Input, Output, EventEmitter } from '@angular/core';
 
 import { Day, CreatedSubject } from '../../../models/classes/created-subject';
+import { Subject } from '../../../models/classes/subject';
 
 @Component({
   selector: 'ttb-time-table',
@@ -8,6 +9,8 @@ import { Day, CreatedSubject } from '../../../models/classes/created-subject';
   styleUrls: ['./time-table.component.scss']
 })
 export class TimeTableComponent {
+  @Input() createdSubjects: CreatedSubject[] = [];
+  @Input() subjects: Subject[] = [];
   day = Object.keys(Day).map(key => Day[key]);
   @Output() createSubject = new EventEmitter<CreatedSubject>();
   triggerCreateSubject(data) {

@@ -1,2 +1,2 @@
-<ttb-time-table (createSubject)="createSubject($event)"></ttb-time-table>
+<ttb-time-table [createdSubjects]="(class$ | async)?.createdSubjects" [subjects]="subjects$ | async" (createSubject)="createSubject($event)"></ttb-time-table>
 <ttb-class-selectable [selectableSubjects]="selectableSubjects$ | async"></ttb-class-selectable>

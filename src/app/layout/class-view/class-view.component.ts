@@ -19,6 +19,7 @@ interface State extends fromCore.State, fromApp.State { }
   styleUrls: ['./class-view.component.scss']
 })
 export class ClassViewComponent implements OnInit {
+  subjects$: Observable<Subject[]>;
   selectableSubjects$: Observable<Subject[]>;
   class$: Observable<Class>;
   constructor(private store: Store<State>) { }
@@ -26,6 +27,9 @@ export class ClassViewComponent implements OnInit {
   ngOnInit() {
     this.class$ = this.store.pipe(
       select(s => s.view.selectedClass)
+    );
+    this.subjects$ = this.store.pipe(
+      select(s => s.core.subject.entities)
     );
     this.store.dispatch(new fromSubjectActions.LoadAll());
     this.selectableSubjects$ = this.class$.pipe(
@@ -40,8 +44,7 @@ export class ClassViewComponent implements OnInit {
         });
         return subjects.filter(s => s.numberInWeek > 0).map(s => s.subjectId);
       }),
-      switchMap(subjectIds => this.store.pipe(
-        select(s => s.core.subject.entities),
+      switchMap(subjectIds => this.subjects$.pipe(
         map(subjects => subjects.filter(s => subjectIds.indexOf(s.id) !== -1)),
       ))
     );
@@ -49,8 +52,10 @@ export class ClassViewComponent implements OnInit {
 
   createSubject(data: CreatedSubject) {
     this.class$.subscribe(c => {
+      if (c.createdSubjects.find(cs => cs.day === data.day && cs.nth === data.nth)) {
+        return;
+      }
       c.createdSubjects.push(data);
-      console.log(c);
       this.store.dispatch(new fromClassActions.Save(c));
     }).unsubscribe();
   }

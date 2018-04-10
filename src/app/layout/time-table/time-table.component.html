@@ -1,1 +1,1 @@
-<ttb-time-table-day *ngFor="let d of day" [dayName]="d" (createSubject)="triggerCreateSubject($event)"></ttb-time-table-day>
+<ttb-time-table-day *ngFor="let d of day" [dayName]="d" [createdSubjects]="createdSubjects" [subjects]="subjects" (createSubject)="triggerCreateSubject($event)"></ttb-time-table-day>

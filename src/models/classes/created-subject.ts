@@ -3,6 +3,7 @@ export class CreatedSubject {
   day: Day;
   nth: number;
   classroomId: number;
+  teacherId: number;
 }
 
 export enum Day {

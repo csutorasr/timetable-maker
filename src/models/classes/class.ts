@@ -1,4 +1,4 @@
-import { CreatedSubject } from "./created-subject";
+import { CreatedSubject } from './created-subject';
 
 export class Class {
   id: number;
@@ -8,7 +8,7 @@ export class Class {
     numberInWeek: number;
   }[];
   createdSubjects: CreatedSubject[];
-  constructor () {
+  constructor() {
     this.subjects = [];
     this.createdSubjects = [];
   }
