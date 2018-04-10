@@ -24,7 +24,7 @@ export class SubjectEffect {
 
   @Effect({ dispatch: false })
   save$ = this.actions$.pipe(
-    ofType(fromActions.SubjectActionTypes.LoadAll),
+    ofType(fromActions.SubjectActionTypes.Save),
     tap(({ payload }: fromActions.Save) => this.persist.save(payload, EntityTypeNames.Subject)),
   );
 

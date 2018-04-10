@@ -11,6 +11,10 @@ export class Class {
     nth: number;
     classroomId: number;
   }[];
+  constructor () {
+    this.subjects = [];
+    this.createdSubjects = [];
+  }
 }
 
 export enum Day {

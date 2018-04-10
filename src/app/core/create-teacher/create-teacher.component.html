@@ -1,0 +1,16 @@
+<h2 mat-dialog-title>Create teacher</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="Firstname" [(ngModel)]="data.firstName">
+  </mat-form-field>
+  <mat-form-field>
+    <input matInput placeholder="Lastname" [(ngModel)]="data.lastName">
+  </mat-form-field>
+  <mat-form-field>
+    <input type="number" matInput placeholder="Minimum working hour" [(ngModel)]="data.minWorkHour">
+  </mat-form-field>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="data">OK</button>
+</mat-dialog-actions>

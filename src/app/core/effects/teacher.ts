@@ -24,7 +24,7 @@ export class TeacherEffect {
 
   @Effect({ dispatch: false })
   save$ = this.actions$.pipe(
-    ofType(fromActions.TeacherActionTypes.LoadAll),
+    ofType(fromActions.TeacherActionTypes.Save),
     tap(({ payload }: fromActions.Save) => this.persist.save(payload, EntityTypeNames.Teacher)),
   );
 

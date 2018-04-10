@@ -1,0 +1,27 @@
+<h2 mat-dialog-title>Create class</h2>
+<mat-dialog-content>
+  <mat-form-field>
+    <input matInput placeholder="name" [(ngModel)]="data.name">
+  </mat-form-field>
+  <h2>Add subject:</h2>
+  <mat-form-field>
+    <mat-select placeholder="Subject" [(ngModel)]="selectedSubjectId">
+      <mat-option *ngFor="let subject of subjects$ | async" [value]="subject.id">
+        {{ subject.name }}
+      </mat-option>
+    </mat-select>
+  </mat-form-field>
+  <button mat-button (click)="addSubject(selectedSubjectId)">
+    Add
+  </button>
+  <h2>Number of classes:</h2>
+  <div *ngFor="let subjectOfClass of data.subjects">
+    <mat-form-field>
+      <input type="number" matInput [placeholder]="subjectById(subjectOfClass.subjectId).name" [(ngModel)]="subjectOfClass.numberInWeek">
+    </mat-form-field>
+  </div>
+</mat-dialog-content>
+<mat-dialog-actions>
+  <button mat-button mat-dialog-close>Cancel</button>
+  <button mat-button [mat-dialog-close]="data">OK</button>
+</mat-dialog-actions>
