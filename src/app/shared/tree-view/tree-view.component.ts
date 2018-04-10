@@ -12,10 +12,12 @@ export class TreeViewComponent {
   @Input() selectedMeta = null;
   @Output() trigger = new EventEmitter();
   @HostListener('click', ['$event']) onclick(event: MouseEvent) {
-    event.preventDefault();
-    event.stopPropagation();
-    this.trigger.next(this.data.meta);
-    return false;
+    if (this.data.meta !== undefined) {
+      event.preventDefault();
+      event.stopPropagation();
+      this.trigger.next(this.data.meta);
+      return false;
+    }
   }
   clicked(data) {
     this.trigger.next(data);
