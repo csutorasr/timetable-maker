@@ -37,7 +37,7 @@ export class SchoolTreeViewComponent implements OnInit {
   triggered(meta) {
     this.selectedMeta = meta;
     if (meta instanceof Class) {
-      this.store.dispatch(new SelectClass(meta));
+      this.store.dispatch(new SelectClass(meta.id));
     }
   }
 

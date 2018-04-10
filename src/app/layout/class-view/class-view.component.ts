@@ -26,14 +26,18 @@ export class ClassViewComponent implements OnInit {
 
   ngOnInit() {
     this.class$ = this.store.pipe(
-      select(s => s.view.selectedClass)
+      select(s => s.view.selectedClassId),
+      switchMap(id => this.store.pipe(
+        select(s => s.core.class.entities),
+        map(entities => entities.find(e => e.id === id)),
+      )),
+      filter(c => !!c),
     );
     this.subjects$ = this.store.pipe(
       select(s => s.core.subject.entities)
     );
     this.store.dispatch(new fromSubjectActions.LoadAll());
     this.selectableSubjects$ = this.class$.pipe(
-      filter(c => c !== null),
       map(c => {
         const subjects = c.subjects.map(s => ({ ...s }));
         c.createdSubjects.forEach(cs => {

@@ -3,11 +3,11 @@ import { Class } from '../../models/classes/class';
 import { ViewActions, ViewActionTypes } from '../actions/view';
 
 export interface State {
-  selectedClass: Class;
+  selectedClassId: number;
 }
 
 export const initialState: State = {
-  selectedClass: null,
+  selectedClassId: null,
 };
 
 export function reducer(state = initialState, action: ViewActions): State {
@@ -15,7 +15,7 @@ export function reducer(state = initialState, action: ViewActions): State {
     case ViewActionTypes.SelectClass: {
       return {
         ...state,
-        selectedClass: action.payload,
+        selectedClassId: action.payload,
       };
     }
     default:

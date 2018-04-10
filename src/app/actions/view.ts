@@ -8,7 +8,7 @@ export enum ViewActionTypes {
 
 export class SelectClass implements Action {
   readonly type = ViewActionTypes.SelectClass;
-  constructor(public payload: Class) { }
+  constructor(public payload: number) { }
 }
 
 export type ViewActions =
