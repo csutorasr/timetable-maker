@@ -1,0 +1,12 @@
+:host {
+  display: flex;
+  user-select: none;
+}
+
+div {
+  flex: 1;
+}
+
+ttb-class-selectable {
+  width: 200px;
+}

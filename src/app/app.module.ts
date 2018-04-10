@@ -17,6 +17,8 @@ import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
 import { reducers } from './reducers';
+import { ClassViewComponent } from './layout/class-view/class-view.component';
+import { ClassSelectableComponent } from './layout/class-selectable/class-selectable.component';
 
 
 @NgModule({
@@ -24,6 +26,8 @@ import { reducers } from './reducers';
     AppComponent,
     MainComponent,
     SchoolTreeViewComponent,
+    ClassViewComponent,
+    ClassSelectableComponent,
   ],
   imports: [
     BrowserModule,
