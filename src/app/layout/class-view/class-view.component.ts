@@ -5,9 +5,11 @@ import { Observable } from 'rxjs/Observable';
 
 import * as fromCore from '../../core/reducers';
 import * as fromSubjectActions from '../../core/actions/subject';
+import * as fromClassActions from '../../core/actions/class';
 import * as fromApp from '../../reducers';
 import { Class } from '../../../models/classes/class';
 import { Subject } from '../../../models/classes/subject';
+import { CreatedSubject } from '../../../models/classes/created-subject';
 
 interface State extends fromCore.State, fromApp.State { }
 
@@ -43,6 +45,14 @@ export class ClassViewComponent implements OnInit {
         map(subjects => subjects.filter(s => subjectIds.indexOf(s.id) !== -1)),
       ))
     );
+  }
+
+  createSubject(data: CreatedSubject) {
+    this.class$.subscribe(c => {
+      c.createdSubjects.push(data);
+      console.log(c);
+      this.store.dispatch(new fromClassActions.Save(c));
+    }).unsubscribe();
   }
 
 }

@@ -1,4 +1,5 @@
 <h2>{{dayName}}</h2>
-<div *ngFor="let time of times">
+<div *ngFor="let time of times" dnd-droppable (onDropSuccess)="onDrop($event, time)">
   {{time}}
+  {{findCreatedSubject(time)?.subjectId}}
 </div>

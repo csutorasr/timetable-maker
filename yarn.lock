@@ -5584,6 +5584,10 @@ netmask@~1.0.4:
   version "1.0.6"
   resolved "https://registry.yarnpkg.com/netmask/-/netmask-1.0.6.tgz#20297e89d86f6f6400f250d9f4f6b4c1945fcd35"
 
+ng2-dnd@^5.0.2:
+  version "5.0.2"
+  resolved "https://registry.yarnpkg.com/ng2-dnd/-/ng2-dnd-5.0.2.tgz#862278ac7dedfa14f5783bbf34014d5d73dfefb4"
+
 ngx-electron@^1.0.4:
   version "1.0.4"
   resolved "https://registry.yarnpkg.com/ngx-electron/-/ngx-electron-1.0.4.tgz#2d80b25d74ae4d6226ad8b3bc4ecfa611e48fdca"

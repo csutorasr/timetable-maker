@@ -1,4 +1,4 @@
 <h2>Hiányzó tantárgyak:</h2>
-<div *ngFor="let subject of selectableSubjects">
+<div *ngFor="let subject of selectableSubjects" dnd-draggable [dragEnabled]="true" [dragData]="subject">
   {{subject.name}}
 </div>

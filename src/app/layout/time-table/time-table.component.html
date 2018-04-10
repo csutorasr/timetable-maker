@@ -1,7 +1,1 @@
-<ttb-time-table-day dayName="Monday"></ttb-time-table-day>
-<ttb-time-table-day dayName="Tuesday"></ttb-time-table-day>
-<ttb-time-table-day dayName="Wednesday"></ttb-time-table-day>
-<ttb-time-table-day dayName="Thursday"></ttb-time-table-day>
-<ttb-time-table-day dayName="Friday"></ttb-time-table-day>
-<ttb-time-table-day dayName="Saturday"></ttb-time-table-day>
-<ttb-time-table-day dayName="Sunday"></ttb-time-table-day>
+<ttb-time-table-day *ngFor="let d of day" [dayName]="d" (createSubject)="triggerCreateSubject($event)"></ttb-time-table-day>

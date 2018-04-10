@@ -1,3 +1,5 @@
+import { CreatedSubject } from "./created-subject";
+
 export class Class {
   id: number;
   name: string;
@@ -5,24 +7,9 @@ export class Class {
     subjectId: number;
     numberInWeek: number;
   }[];
-  createdSubjects: {
-    subjectId: number;
-    day: Day;
-    nth: number;
-    classroomId: number;
-  }[];
+  createdSubjects: CreatedSubject[];
   constructor () {
     this.subjects = [];
     this.createdSubjects = [];
   }
-}
-
-export enum Day {
-  Monday = 'Monday',
-  Tuesday = 'Tuesday',
-  Wednesday = 'Wednesday',
-  Thursday = 'Thursday',
-  Friday = 'Friday',
-  Saturday = 'Saturday',
-  Sunday = 'Sunday',
 }
