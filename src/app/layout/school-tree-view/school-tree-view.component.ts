@@ -6,6 +6,8 @@ import { Observable } from 'rxjs/Observable';
 import { TreeModel } from '../../shared/tree-view/tree-model';
 import * as fromCore from '../../core/reducers';
 import * as fromClassActions from '../../core/actions/class';
+import { Class } from '../../../models/classes/class';
+import { SelectClass } from '../../actions/view';
 
 @Component({
   selector: 'ttb-school-tree-view',
@@ -34,6 +36,9 @@ export class SchoolTreeViewComponent implements OnInit {
 
   triggered(meta) {
     this.selectedMeta = meta;
+    if (meta instanceof Class) {
+      this.store.dispatch(new SelectClass(meta));
+    }
   }
 
 }

@@ -16,6 +16,7 @@ import { SharedModule } from './shared/shared.module';
 import { CoreModule } from './core/core.module';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
+import { reducers } from './reducers';
 
 
 @NgModule({
@@ -29,7 +30,7 @@ import { EffectsModule } from '@ngrx/effects';
     NgxElectronModule,
     ReactiveFormsModule,
     PersistModule.forRoot(TypeMap),
-    StoreModule.forRoot({}),
+    StoreModule.forRoot(reducers),
     EffectsModule.forRoot([]),
     AppRoutingModule,
     SharedModule,
