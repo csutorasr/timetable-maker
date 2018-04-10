@@ -26,7 +26,8 @@ export class PersistService<T extends string> {
           case RequestType.save: {
             const element = this.data[res.entityType].find(e => e.id === res.entity.id);
             if (element) {
-              this.data[res.entityType] = this.data[res.entityType].map(e => e.id === res.entity.id ? res.entity : e);
+              this.data[res.entityType] = this.data[res.entityType]
+                .map(e => e.id === res.entity.id ? this.copyEntityData(res.entityType, res.entity) : e);
               break;
             }
             this.data[res.entityType].push(this.copyEntityData(res.entityType, res.entity));
