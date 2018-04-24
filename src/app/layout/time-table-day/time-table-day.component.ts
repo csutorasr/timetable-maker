@@ -62,4 +62,8 @@ export class TimeTableDayComponent {
       day: this.dayName,
     });
   }
+
+  allowDrop(data) {
+    return () => data.empty;
+  }
 }
