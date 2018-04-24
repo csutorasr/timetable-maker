@@ -6,10 +6,14 @@ import { Observable } from 'rxjs/Observable';
 import * as fromCore from '../../core/reducers';
 import * as fromSubjectActions from '../../core/actions/subject';
 import * as fromClassActions from '../../core/actions/class';
+import * as fromClassroomActions from '../../core/actions/classroom';
+import * as fromTeacherActions from '../../core/actions/teacher';
 import * as fromApp from '../../reducers';
 import { Class } from '../../../models/classes/class';
 import { Subject } from '../../../models/classes/subject';
 import { CreatedSubject, Day } from '../../../models/classes/created-subject';
+import { Teacher } from '../../../models/classes/teacher';
+import { Classroom } from '../../../models/classes/classroom';
 
 interface State extends fromCore.State, fromApp.State { }
 
@@ -19,9 +23,13 @@ interface State extends fromCore.State, fromApp.State { }
   styleUrls: ['./class-view.component.scss']
 })
 export class ClassViewComponent implements OnInit {
+  teachers$: Observable<Teacher[]>;
+  classrooms$: Observable<Classroom[]>;
   subjects$: Observable<Subject[]>;
   selectableSubjects$: Observable<{ count: number, subject: Subject }[]>;
   class$: Observable<Class>;
+  classroomId: number = null;
+  teacherId: number = null;
   constructor(private store: Store<State>) { }
 
   ngOnInit() {
@@ -37,6 +45,10 @@ export class ClassViewComponent implements OnInit {
       select(s => s.core.subject.entities)
     );
     this.store.dispatch(new fromSubjectActions.LoadAll());
+    this.classrooms$ = this.store.pipe(select(s => s.core.classroom.entities));
+    this.store.dispatch(new fromClassroomActions.LoadAll());
+    this.teachers$ = this.store.pipe(select(s => s.core.teacher.entities));
+    this.store.dispatch(new fromTeacherActions.LoadAll());
     this.selectableSubjects$ = this.class$.pipe(
       map(c => {
         const subjects = c.subjects.map(s => ({ ...s }));
@@ -62,7 +74,12 @@ export class ClassViewComponent implements OnInit {
 
   createSubject(data: CreatedSubject) {
     this.class$.subscribe(c => {
+      data.classroomId = this.classroomId;
+      data.teacherId = this.teacherId;
       if (c.createdSubjects.find(cs => cs.day === data.day && cs.nth === data.nth)) {
+        return;
+      }
+      if (data.classroomId == null || data.teacherId == null) {
         return;
       }
       c.createdSubjects.push(data);

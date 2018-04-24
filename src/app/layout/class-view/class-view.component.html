@@ -1,3 +1,4 @@
 <ttb-time-table [createdSubjects]="(class$ | async)?.createdSubjects" [subjects]="subjects$ | async" (createSubject)="createSubject($event)"
   (deleteSubject)="deleteSubject($event)"></ttb-time-table>
+<ttb-class-misc-selector [classrooms]="classrooms$ | async" [teachers]="teachers$ | async" [(teacherId)]="teacherId" [(classroomId)]="classroomId"></ttb-class-misc-selector>
 <ttb-class-selectable [selectableSubjects]="selectableSubjects$ | async"></ttb-class-selectable>

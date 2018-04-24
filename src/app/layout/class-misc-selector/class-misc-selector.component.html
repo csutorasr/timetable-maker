@@ -1,0 +1,14 @@
+<mat-form-field>
+  <mat-select [value]="teacherId" (valueChange)="teacherIdChange.emit($event)" placeholder="Teacher" required>
+    <mat-option *ngFor="let teacher of teachers" [value]="teacher.id">
+      {{teacher.firstName}} {{teacher.lastName}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>
+<mat-form-field>
+  <mat-select [value]="classroomId" (valueChange)="classroomIdChange.emit($event)" placeholder="Classroom" required>
+    <mat-option *ngFor="let classroom of classrooms" [value]="classroom.id">
+      {{classroom.name}}
+    </mat-option>
+  </mat-select>
+</mat-form-field>

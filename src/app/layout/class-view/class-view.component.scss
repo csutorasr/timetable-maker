@@ -1,12 +1,21 @@
 :host {
-  display: flex;
+  display: grid;
   user-select: none;
+  grid-template-areas: "timetable misc" "timetable classes";
+  grid-template-columns: auto 200px;
+  grid-template-rows: auto 1fr;
+  grid-gap: 0.3em;
+  padding: 0.3em;
 }
 
 ttb-time-table {
-  flex: 1;
+  grid-area: timetable;
+}
+
+ttb-class-misc-selector {
+  grid-area: misc;
 }
 
 ttb-class-selectable {
-  width: 200px;
+  grid-area: classes;
 }

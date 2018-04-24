@@ -23,6 +23,7 @@ import { ClassSelectableComponent } from './layout/class-selectable/class-select
 import { TimeTableComponent } from './layout/time-table/time-table.component';
 import { TimeTableDayComponent } from './layout/time-table-day/time-table-day.component';
 import { MaterialModule } from './material/material.module';
+import { ClassMiscSelectorComponent } from './layout/class-misc-selector/class-misc-selector.component';
 
 
 @NgModule({
@@ -34,6 +35,7 @@ import { MaterialModule } from './material/material.module';
     ClassSelectableComponent,
     TimeTableComponent,
     TimeTableDayComponent,
+    ClassMiscSelectorComponent,
   ],
   imports: [
     BrowserModule,
