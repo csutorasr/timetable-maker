@@ -1,5 +1,5 @@
 <h2>{{dayName}}</h2>
-<mat-card *ngFor="let data of list" dnd-droppable (onDropSuccess)="onDrop($event, data.nth)">
+<mat-card *ngFor="let data of list" dnd-droppable (onDropSuccess)="onDrop($event, data.nth)" [allowDrop]="!data.empty">
   <div>{{data.nth}}. {{data.empty ? 'Empty' : data.subject?.name}}</div>
   <div>{{data.classroomId}}</div>
   <div>{{data.teacherId}}</div>
