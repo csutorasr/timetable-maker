@@ -22,6 +22,7 @@ import { ClassViewComponent } from './layout/class-view/class-view.component';
 import { ClassSelectableComponent } from './layout/class-selectable/class-selectable.component';
 import { TimeTableComponent } from './layout/time-table/time-table.component';
 import { TimeTableDayComponent } from './layout/time-table-day/time-table-day.component';
+import { MaterialModule } from './material/material.module';
 
 
 @NgModule({
@@ -47,6 +48,7 @@ import { TimeTableDayComponent } from './layout/time-table-day/time-table-day.co
     ResizableModule,
     CoreModule,
     BrowserAnimationsModule,
+    MaterialModule,
   ],
   providers: [],
   bootstrap: [AppComponent]

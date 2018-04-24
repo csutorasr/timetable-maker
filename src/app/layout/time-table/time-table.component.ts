@@ -13,7 +13,11 @@ export class TimeTableComponent {
   @Input() subjects: Subject[] = [];
   day = Object.keys(Day).map(key => Day[key]);
   @Output() createSubject = new EventEmitter<CreatedSubject>();
+  @Output() deleteSubject = new EventEmitter<{ nth: number, day: Day }>();
   triggerCreateSubject(data) {
     this.createSubject.emit(data);
+  }
+  triggerDeleteSubject(data) {
+    this.deleteSubject.emit(data);
   }
 }

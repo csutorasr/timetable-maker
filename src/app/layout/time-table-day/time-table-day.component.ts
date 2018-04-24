@@ -20,6 +20,7 @@ export class TimeTableDayComponent {
     this.loadList();
   }
   @Output() createSubject = new EventEmitter<CreatedSubject>();
+  @Output() deleteSubject = new EventEmitter<{ nth: number, day: Day }>();
 
   list: { nth: number; subject?: Subject; classroomId?: number; teacherId?: number; empty: boolean; }[];
   private createdSubejctsData: CreatedSubject[];
@@ -53,5 +54,12 @@ export class TimeTableDayComponent {
           empty: true,
         };
       });
+  }
+
+  onDelete(nth: number) {
+    this.deleteSubject.emit({
+      nth,
+      day: this.dayName,
+    });
   }
 }

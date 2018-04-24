@@ -9,7 +9,7 @@ import * as fromClassActions from '../../core/actions/class';
 import * as fromApp from '../../reducers';
 import { Class } from '../../../models/classes/class';
 import { Subject } from '../../../models/classes/subject';
-import { CreatedSubject } from '../../../models/classes/created-subject';
+import { CreatedSubject, Day } from '../../../models/classes/created-subject';
 
 interface State extends fromCore.State, fromApp.State { }
 
@@ -60,6 +60,14 @@ export class ClassViewComponent implements OnInit {
         return;
       }
       c.createdSubjects.push(data);
+      this.store.dispatch(new fromClassActions.Save(c));
+    }).unsubscribe();
+  }
+
+  deleteSubject(data: { nth: number, day: Day }) {
+    this.class$.subscribe(c => {
+      const index = c.createdSubjects.findIndex(cs => cs.day === data.day && cs.nth === data.nth);
+      c.createdSubjects.splice(index, 1);
       this.store.dispatch(new fromClassActions.Save(c));
     }).unsubscribe();
   }
