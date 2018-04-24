@@ -18,6 +18,8 @@ export class TimeTableComponent {
   day = Object.keys(Day).map(key => Day[key]);
   @Output() createSubject = new EventEmitter<CreatedSubject>();
   @Output() deleteSubject = new EventEmitter<{ nth: number, day: Day }>();
+
+  classNumbering = [0, 1, 2, 3, 4, 5, 6, 7, 8];
   triggerCreateSubject(data) {
     this.createSubject.emit(data);
   }

@@ -12,6 +12,7 @@ import { Classroom } from '../../../models/classes/classroom';
   styleUrls: ['./time-table-day.component.scss']
 })
 export class TimeTableDayComponent {
+  @Input() classNumbering: number[] = [];
   @Input() teachers: Teacher[] = [];
   @Input() classrooms: Classroom[] = [];
   @Input() dayName: Day = null;
@@ -40,7 +41,7 @@ export class TimeTableDayComponent {
     this.createSubject.emit(c);
   }
   loadList() {
-    this.list = [0, 1, 2, 3, 4, 5, 6, 7, 8]
+    this.list = this.classNumbering
       .map(nth => {
         if (this.createdSubejctsData) {
           const cc = this.createdSubejctsData.find(cs => cs.nth === nth && cs.day === this.dayName);
