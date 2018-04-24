@@ -1,2 +1,13 @@
+<div>
+  <div>0</div>
+  <div>1</div>
+  <div>2</div>
+  <div>3</div>
+  <div>4</div>
+  <div>5</div>
+  <div>6</div>
+  <div>7</div>
+  <div>8</div>
+</div>
 <ttb-time-table-day *ngFor="let d of day" [dayName]="d" [createdSubjects]="createdSubjects" [subjects]="subjects" (createSubject)="triggerCreateSubject($event)"
   (deleteSubject)="triggerDeleteSubject($event)" [classrooms]="classrooms" [teachers]="teachers"></ttb-time-table-day>
