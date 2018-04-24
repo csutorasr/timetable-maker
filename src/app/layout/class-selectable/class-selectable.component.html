@@ -1,4 +1,7 @@
 <h2>Hiányzó tantárgyak:</h2>
-<div *ngFor="let subject of selectableSubjects" dnd-draggable [dragEnabled]="true" [dragData]="subject">
-  {{subject.name}}
+<div *ngFor="let subject of selectableSubjects">
+  <span>{{subject.count}}</span>
+  <div dnd-draggable [dragEnabled]="true" [dragData]="subject.subject">
+    {{subject.subject.name}}
+  </div>
 </div>

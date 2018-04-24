@@ -20,7 +20,7 @@ interface State extends fromCore.State, fromApp.State { }
 })
 export class ClassViewComponent implements OnInit {
   subjects$: Observable<Subject[]>;
-  selectableSubjects$: Observable<Subject[]>;
+  selectableSubjects$: Observable<{ count: number, subject: Subject }[]>;
   class$: Observable<Class>;
   constructor(private store: Store<State>) { }
 
@@ -46,10 +46,16 @@ export class ClassViewComponent implements OnInit {
             subject.numberInWeek--;
           }
         });
-        return subjects.filter(s => s.numberInWeek > 0).map(s => s.subjectId);
+        return subjects.filter(s => s.numberInWeek > 0).map(s => ({
+          count: s.numberInWeek,
+          subjectId: s.subjectId
+        }));
       }),
       switchMap(subjectIds => this.subjects$.pipe(
-        map(subjects => subjects.filter(s => subjectIds.indexOf(s.id) !== -1)),
+        map(subjects => subjectIds.map(s => ({
+          count: s.count,
+          subject: subjects.find(subject => subject.id === s.subjectId),
+        }))),
       ))
     );
   }

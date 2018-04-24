@@ -7,5 +7,5 @@ import { Subject } from '../../../models/classes/subject';
   styleUrls: ['./class-selectable.component.scss']
 })
 export class ClassSelectableComponent {
-  @Input() selectableSubjects: Subject[] = [];
+  @Input() selectableSubjects: { count: number, subject: Subject }[] = [];
 }
