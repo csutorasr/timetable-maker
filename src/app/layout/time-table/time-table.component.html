@@ -1,2 +1,2 @@
 <ttb-time-table-day *ngFor="let d of day" [dayName]="d" [createdSubjects]="createdSubjects" [subjects]="subjects" (createSubject)="triggerCreateSubject($event)"
-  (deleteSubject)="triggerDeleteSubject($event)"></ttb-time-table-day>
+  (deleteSubject)="triggerDeleteSubject($event)" [classrooms]="classrooms" [teachers]="teachers"></ttb-time-table-day>

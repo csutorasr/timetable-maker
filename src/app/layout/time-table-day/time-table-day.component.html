@@ -1,7 +1,7 @@
 <h2>{{dayName}}</h2>
 <mat-card *ngFor="let data of list" dnd-droppable (onDropSuccess)="onDrop($event, data.nth)" [allowDrop]="allowDrop(data)">
   <div>{{data.nth}}. {{data.empty ? 'Empty' : data.subject?.name}}</div>
-  <div>{{data.classroomId}}</div>
-  <div>{{data.teacherId}}</div>
+  <div>{{getClassroom(data.classroomId)?.name}}</div>
+  <div>{{getTeacher(data.teacherId)?.firstName}} {{getTeacher(data.teacherId)?.lastName}}</div>
   <button mat-icon-button *ngIf="!data.empty" (click)="onDelete(data.nth)"><mat-icon>delete</mat-icon></button>
 </mat-card>

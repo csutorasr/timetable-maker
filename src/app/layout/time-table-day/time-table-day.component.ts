@@ -3,6 +3,8 @@ import { DragDropData } from 'ng2-dnd';
 
 import { Day, CreatedSubject } from '../../../models/classes/created-subject';
 import { Subject } from '../../../models/classes/subject';
+import { Teacher } from '../../../models/classes/teacher';
+import { Classroom } from '../../../models/classes/classroom';
 
 @Component({
   selector: 'ttb-time-table-day',
@@ -10,6 +12,8 @@ import { Subject } from '../../../models/classes/subject';
   styleUrls: ['./time-table-day.component.scss']
 })
 export class TimeTableDayComponent {
+  @Input() teachers: Teacher[] = [];
+  @Input() classrooms: Classroom[] = [];
   @Input() dayName: Day = null;
   @Input() set createdSubjects(data: CreatedSubject[]) {
     this.createdSubejctsData = data;
@@ -45,6 +49,7 @@ export class TimeTableDayComponent {
               nth: cc.nth,
               subject: this.subjectsData ? this.subjectsData.find(s => s.id === cc.subjectId) : null,
               classroomId: cc.classroomId,
+              teacherId: cc.teacherId,
               empty: false,
             };
           }
@@ -65,5 +70,13 @@ export class TimeTableDayComponent {
 
   allowDrop(data) {
     return () => data.empty;
+  }
+
+  getTeacher(teacherId): Teacher {
+    return this.teachers.find(t => t.id === teacherId);
+  }
+
+  getClassroom(classroomId): Classroom {
+    return this.classrooms.find(c => c.id === classroomId);
   }
 }
