@@ -20,7 +20,7 @@ export class InMemoryConnector<T extends string> implements Connector<T, IEntity
     }
   }
 
-  save(req: ISaveRequest<T, IEntity>): IEntity {
+  async save(req: ISaveRequest<T, IEntity>): Promise<IEntity> {
     const toBeSaved = req.entity;
     const table = this.database[req.entityType];
     const data = table.data;
@@ -38,7 +38,7 @@ export class InMemoryConnector<T extends string> implements Connector<T, IEntity
     }
     return saved;
   }
-  findAll(req: IFindAllRequest<T>): IEntity[] {
+  async findAll(req: IFindAllRequest<T>): Promise<IEntity[]> {
     return this.database[req.entityType].data;
   }
 }

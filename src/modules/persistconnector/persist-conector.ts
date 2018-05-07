@@ -5,19 +5,19 @@ import { IResponse } from './response';
 
 export class PersistConnector<T extends string, V> {
   constructor(private connector: Connector<T, V>) {
-    ipcMain.on('persist', (event, req: IRequest<T, V>) => {
+    ipcMain.on('persist', async (event, req: IRequest<T, V>) => {
       switch (req.type) {
         case RequestType.save:
           this.sendResponse(event, {
             type: req.type,
-            entity: this.connector.save(req),
+            entity: await this.connector.save(req),
             entityType: req.entityType,
           });
           break;
         case RequestType.findAll:
           this.sendResponse(event, {
             type: req.type,
-            entities: this.connector.findAll(req),
+            entities: await this.connector.findAll(req),
             entityType: req.entityType,
           });
           break;
