@@ -74,16 +74,34 @@ export class ClassViewComponent implements OnInit {
 
   createSubject(data: CreatedSubject) {
     this.class$.subscribe(c => {
-      data.classroomId = this.classroomId;
-      data.teacherId = this.teacherId;
-      if (c.createdSubjects.find(cs => cs.day === data.day && cs.nth === data.nth)) {
-        return;
-      }
-      if (data.classroomId == null || data.teacherId == null) {
-        return;
-      }
-      c.createdSubjects.push(data);
-      this.store.dispatch(new fromClassActions.Save(c));
+      this.store.pipe(select(s => s.core.class.entities)).subscribe(classes => {
+        data.classroomId = this.classroomId;
+        data.teacherId = this.teacherId;
+        if (c.createdSubjects.find(cs => cs.day === data.day && cs.nth === data.nth)) {
+          return;
+        }
+        if (data.classroomId == null || data.teacherId == null) {
+          return;
+        }
+        let sameClassroom = false, sameTeacher = false;
+        const matchedClass = classes.find(x => !!x.createdSubjects.find(cs =>
+          cs.day === data.day &&
+          cs.nth === data.nth &&
+          (cs.classroomId === data.classroomId && (sameClassroom = true) ||
+           cs.teacherId === data.teacherId && (sameTeacher = true))
+        ));
+        if (matchedClass) {
+          if (sameClassroom) {
+            // TODO: set error
+          }
+          if (sameTeacher) {
+            // TODO: set error
+          }
+          return;
+        }
+        c.createdSubjects.push(data);
+        this.store.dispatch(new fromClassActions.Save(c));
+      }).unsubscribe();
     }).unsubscribe();
   }
 
